@@ -1,0 +1,32 @@
+setup {
+    name: 'ComponentName';
+    settings: {
+        isGlobal: true;
+    };
+    props: {
+        items: string[];
+    };
+    components: [
+        ['OtherComponentName', './other-component.tig'],
+    ];
+}
+
+template {
+    <div class="guys">
+        <OtherComponentName
+            props="static_prop"
+            :dynamicProp="variable"
+            className="&__children"
+        >
+            <slot name="default">
+                <p class="&__good-morning">{{ variable }}</p>
+            </slot>
+        </OtherComponentName>
+
+        <template for="const user of users">
+            <span if="user.length > 2">
+                {{ user }}
+            </span>
+        </template>
+    </div>
+}
