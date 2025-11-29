@@ -17,7 +17,7 @@
 ## 2. Структура файла
 Файл `.tig` состоит из двух блоков: SetupBlock + TemplateBlock
 
-`setup {}` - описывает имя, пропсы, импортируемые компоненты;
+`setup {}` - настраивает компонент: описывает имя, импортируемые компоненты и ect;
 
 `template {}` - композиция HTML-тегов, компонентов, директив
 
@@ -80,6 +80,7 @@ Node:
 
 ## 6. Жизненный цикл компилятора
 
+![lifecycle-compiler](_assets/parse-scheme.png)
 ```md
 .tig file
    ↓
@@ -95,7 +96,6 @@ AST transforms:
    ↓
 Codegen:
     - DOM code generation
-    - SSR generation (optional)
    ↓
 Output JS
 ```
