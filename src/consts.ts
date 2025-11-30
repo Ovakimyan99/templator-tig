@@ -1,4 +1,6 @@
-export const enum ParserState {
-    EXP_INPUT_DATA = 0,
-    DONE = 2,
-}
+import { ParserState } from './type'
+
+export const EXPECT_INPUT_DATA = {
+    type: '_System',
+    value: ParserState.EXP_INPUT_DATA,
+} as const;
