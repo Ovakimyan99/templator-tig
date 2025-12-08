@@ -3,8 +3,8 @@ export const enum ParserState {
     DONE = 2,
 }
 
-export interface Token<V = unknown> {
-    type: string;
+export interface Token<V = unknown, T = string> {
+    type: T;
     value?: V;
 }
 

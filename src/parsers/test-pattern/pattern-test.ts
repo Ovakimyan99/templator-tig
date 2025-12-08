@@ -1,23 +1,18 @@
 import { Test, TestCallback, TestRegexp } from './pattern-test.type';
 
-function testString(pattern: string, source: Iterable<string>) {
-    const iter = pattern[Symbol.iterator]();
-    for (const char of source) {
-        if (iter.next().value !== char) return false;
-    }
-
-    return Boolean(iter.next().done);
+function testString(pattern: string, source: string) {
+    return pattern === source;
 }
 
-function testRegexp(re: TestRegexp, source: Iterable<string>) {
-    return re.test([...source].join(''));
+function testRegexp(re: TestRegexp, source: string) {
+    return re.test(source);
 }
 
-function testCallback(callback: TestCallback, source: Iterable<string>) {
+function testCallback(callback: TestCallback, source: string) {
     return callback(source);
 }
 
-export function testPattern(pattern: Test, source: Iterable<string>): boolean {
+export function testPattern(pattern: Test, source: string): boolean {
     switch (typeof pattern) {
         case 'string':
             return testString(pattern, source);

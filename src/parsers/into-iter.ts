@@ -7,6 +7,6 @@ export function intoIterable<T = unknown>(v: Iterator<T>): Iterable<T> {
 }
 
 export function intoIterator<T = unknown>(v: Iterable<T>): Iterator<T> {
-    if (typeof v === 'function') return v;
+    if (typeof v.next === 'function') return v;
     return v[Symbol.iterator]();
 }

@@ -6,7 +6,6 @@ import { SystemToken } from "../../type";
  */
 type ParserResult<T = unknown> = [T, Iterable<string>];
 
-
 /**
  * Для поточного парсера
  */

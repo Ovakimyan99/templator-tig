@@ -6,26 +6,26 @@ import { type Parser } from '../types/parser';
 import { type Test } from '../test-pattern';
 
 export function tag(patterns: Iterable<Test>): Parser<string, string> {
-    return function* (source: Iterable<string>) {
+    return function* (source) {
         const word: string[] = [];
 
         let iter = intoIterator(source);
-        let chunk = iter.next();
 
         for (const pattern of patterns) {
-            if (chunk.done) {
+            let { done, value: char } = iter.next();
+            if (done) {
                 const data = yield EXPECT_INPUT_DATA;
                 iter = intoIterator(data);
-                chunk = iter.next();
+                char = iter.next().value;
             }
 
-            const isMatches = testPattern(pattern, source);
+            const ok = testPattern(pattern, char);
 
-            if (!isMatches) {
+            if (!ok) {
                 // errorFn(char, pattern);
             }
 
-            word.push(chunk.value);
+            word.push(char);
         }
 
         return [word.join(''), intoIterable(iter)];
